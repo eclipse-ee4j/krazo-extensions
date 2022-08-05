@@ -36,6 +36,14 @@ To run the Krazo testsuite with Eclipse Glassfish, you need to follow these step
 
 ### Developer resources
 
-### license-tool-plugin for checking dependencies
+This section contains a few resources relevant for Krazo Extension developers.
+
+#### Jenkins CI Pipeline
+
+This project uses a [Jenkins Pipeline](https://www.jenkins.io/doc/book/pipeline/) as its [CI pipeline](https://ci.eclipse.org/krazo/view/Extensions/job/krazo-extensions-ci/). The
+pipeline is configured to run on all branches and pull requests. As there is no webhook available, the repository
+is scanned every **two minutes**.
+
+#### license-tool-plugin for checking dependencies
 
 To check if a dependency requires a CQ, the command `mvn -Pstaging org.eclipse.dash:license-tool-plugin:license-check -Ddash.skip=false` can be executed. This creates a summary file in `target/dash/summary`.
