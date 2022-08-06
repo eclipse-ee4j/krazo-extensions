@@ -84,7 +84,7 @@
 
 		<!-- Plugin config -->
 		<dash.skip>true</dash.skip>
-
+		<dependencyCheckSkip>true</dependencyCheckSkip>
 		<!-- Plugin versions -->
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
@@ -420,14 +420,6 @@
 					<version>2.18.1</version>
 					<configuration>
 						<showSuccess>true</showSuccess>
-						<reportSets>
-							<reportSet>
-								<id>integration-tests</id>
-								<reports>
-									<report>failsafe-report-only</report>
-								</reports>
-							</reportSet>
-						</reportSets>
 					</configuration>
 				</plugin>
 
