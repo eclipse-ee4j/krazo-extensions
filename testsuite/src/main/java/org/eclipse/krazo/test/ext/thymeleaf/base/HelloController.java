@@ -16,25 +16,32 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-package org.eclipse.krazo.test.ext.thymeleaf;
+package org.eclipse.krazo.test.ext.thymeleaf.base;
 
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.mvc.Controller;
+import jakarta.mvc.View;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 
 /**
- * @author Gregor Tudan
+ * HelloController test.
+ *
+ * @author Rodrigo Turini
  */
-@RequestScoped
-@Named("greeting")
-public class Greeting {
+@Path("hello")
+public class HelloController {
 
-    private String user;
+    @Inject
+    private Greeting greeting;
 
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
+    @GET
+    @Controller
+    @Produces("text/html")
+    @View("hello.html")
+    public void hello(@QueryParam("user") String user) {
+        greeting.setUser(user);
     }
 }
