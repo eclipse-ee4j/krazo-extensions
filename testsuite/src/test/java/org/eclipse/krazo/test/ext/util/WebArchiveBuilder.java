@@ -53,6 +53,11 @@ public class WebArchiveBuilder {
         return this.addView(new FileAsset(file), name);
     }
 
+	public WebArchiveBuilder addView(File file, String directory, String name) {
+		archive.addAsWebInfResource(new FileAsset(file), String.format("%s/%s", directory, name));
+		return this;
+	}
+
     public WebArchiveBuilder addBeansXml() {
         archive.addAsWebInfResource("beans.xml");
         return this;

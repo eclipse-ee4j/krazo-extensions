@@ -7,10 +7,10 @@ pipeline {
   }
 
   stages {
-    stage("Compile") {
+    stage("Install") {
       steps {
         withMaven() {
-          sh "mvn -Pstaging clean compile"
+          sh "mvn -Pstaging clean install"
         }
       }
     }

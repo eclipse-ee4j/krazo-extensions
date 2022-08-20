@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2014-2015 Oracle and/or its affiliates. All rights reserved.
- * Copyright (c) 2018, 2019 Eclipse Krazo committers and contributors
+ * Copyright (c) 2018, 2022 Eclipse Krazo committers and contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +15,18 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-package org.eclipse.krazo.test.ext.thymeleaf;
+package org.eclipse.krazo.test.ext.thymeleaf.customviewfolder;
 
+import jakarta.mvc.engine.ViewEngine;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
-import java.util.Collections;
-import java.util.Set;
 
-/**
- * Class MyApplication.
- *
- * @author Rodrigo Turini
- */
+import java.util.Map;
+
 @ApplicationPath("resources")
-public class MyApplication extends Application {
+public class ThymeleafCustomViewFolderApplication extends Application {
 
+	@Override public Map<String, Object> getProperties() {
+		return Map.of(ViewEngine.VIEW_FOLDER, "/WEB-INF/custom/");
+	}
 }

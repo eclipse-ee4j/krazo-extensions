@@ -18,12 +18,6 @@
  */
 package org.eclipse.krazo.ext.thymeleaf;
 
-import org.eclipse.krazo.engine.ViewEngineBase;
-import org.eclipse.krazo.engine.ViewEngineConfig;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.web.IWebExchange;
-import org.thymeleaf.web.servlet.JakartaServletWebApplication;
-
 import jakarta.annotation.Priority;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.spi.BeanManager;
@@ -33,6 +27,12 @@ import jakarta.mvc.engine.ViewEngineContext;
 import jakarta.mvc.engine.ViewEngineException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.eclipse.krazo.engine.ViewEngineBase;
+import org.eclipse.krazo.engine.ViewEngineConfig;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.web.IWebExchange;
+import org.thymeleaf.web.servlet.JakartaServletWebApplication;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +59,7 @@ public class ThymeleafViewEngine extends ViewEngineBase {
 
     @Override
     public boolean supports(String view) {
-        return view.endsWith(".html");
+        return view.endsWith(DefaultTemplateEngineProducer.FILE_SUFFIX);
     }
 
     @Override
