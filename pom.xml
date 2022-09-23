@@ -54,8 +54,8 @@
 
 		<!-- MVC / Krazo dependencies -->
 		<jakartaee.version>10.0.0</jakartaee.version>
-		<mvc.version>2.1.0.RC1</mvc.version>
-		<krazo.version>3.0.0.RC1</krazo.version>
+		<mvc.version>2.1.0</mvc.version>
+		<krazo.version>3.0.0</krazo.version>
 
 		<!-- Extension dependencies -->
 		<asciidoctorj.version>2.5.2</asciidoctorj.version>
