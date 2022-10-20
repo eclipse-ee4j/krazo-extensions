@@ -18,6 +18,7 @@
  */
 package org.eclipse.krazo.ext.freemarker;
 
+import freemarker.template.TemplateExceptionHandler;
 import org.eclipse.krazo.engine.ViewEngineConfig;
 import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
@@ -45,12 +46,20 @@ public class DefaultConfigurationProducer {
     @ViewEngineConfig
     public Configuration getConfiguration() {
 
-        Configuration configuration = new Configuration(Configuration.VERSION_2_3_26);
+        Configuration configuration = new Configuration(Configuration.VERSION_2_3_31);
+
+		// use the recommended settings from
+		// https://freemarker.apache.org/docs/pgui_quickstart_createconfiguration.html
         configuration.setDefaultEncoding("UTF-8");
-        configuration.setTemplateLoader(new TemplateLoader() {
+		configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+		configuration.setLogTemplateExceptions(false);
+		configuration.setWrapUncheckedExceptions(true);
+		configuration.setFallbackOnNullLoopVariable(false);
+
+		configuration.setTemplateLoader(new TemplateLoader() {
 
             @Override
-            public Object findTemplateSource(String s) throws IOException {
+            public Object findTemplateSource(String s) {
                 return servletContext.getResourceAsStream("/" + s);     // Freemarker drops "/"
             }
 
@@ -60,7 +69,7 @@ public class DefaultConfigurationProducer {
             }
 
             @Override
-            public Reader getReader(Object o, String s) throws IOException {
+            public Reader getReader(Object o, String s) {
                 return new InputStreamReader((InputStream) o);
             }
 
