@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2018, 2019 Eclipse Krazo committers and contributors
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -80,6 +81,11 @@ public class WebArchiveBuilder {
 
     public WebArchiveBuilder addResource(File file) {
         archive.addAsResource(file);
+        return this;
+    }
+
+    public WebArchiveBuilder addResource(File file, String targetPath) {
+        archive.addAsResource(new FileAsset(file), targetPath);
         return this;
     }
 

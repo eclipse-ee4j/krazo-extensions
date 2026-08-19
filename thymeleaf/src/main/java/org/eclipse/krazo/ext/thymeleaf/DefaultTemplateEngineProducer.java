@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2014-2015 Oracle and/or its affiliates. All rights reserved.
  * Copyright (c) 2018, 2022 Eclipse Krazo committers and contributors
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +19,15 @@
  */
 package org.eclipse.krazo.ext.thymeleaf;
 
+import jakarta.enterprise.inject.Any;
+import jakarta.enterprise.inject.Instance;
 import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 import jakarta.mvc.MvcContext;
 import jakarta.mvc.engine.ViewEngine;
 import org.eclipse.krazo.engine.ViewEngineConfig;
 import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.messageresolver.IMessageResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.WebApplicationTemplateResolver;
 import org.thymeleaf.web.servlet.IServletWebApplication;
@@ -50,6 +54,11 @@ public class DefaultTemplateEngineProducer {
 	@Inject
 	private MvcContext mvcContext;
 
+	@Inject
+	@Any
+	@ViewEngineConfig
+	private Instance<IMessageResolver> messageResolvers;
+
 	@Produces
 	@ViewEngineConfig
 	public TemplateEngine getTemplateEngine() {
@@ -62,6 +71,10 @@ public class DefaultTemplateEngineProducer {
 		TemplateEngine engine = new TemplateEngine();
 		engine.addTemplateResolver(viewResolver);
 		engine.addTemplateResolver(fragmentResolver);
+
+		// Add all CDI-managed message resolvers
+		// Thymeleaf's TemplateEngine will automatically sort them by order during initialization
+		messageResolvers.forEach(engine::addMessageResolver);
 
 		return engine;
 

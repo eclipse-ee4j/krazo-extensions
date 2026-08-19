@@ -2,6 +2,7 @@
 <!--
 
     Copyright (c) 2018, 2021 Eclipse Krazo committers and contributors
+    Copyright (c) 2026 Contributors to the Eclipse Foundation
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -132,6 +133,20 @@
 		<dependency>
 			<groupId>net.sourceforge.htmlunit</groupId>
 			<artifactId>htmlunit</artifactId>
+		</dependency>
+
+		<!-- Thymeleaf API for custom resolvers in test code -->
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Krazo Thymeleaf extension for ThymeleafProperties in test code -->
+		<dependency>
+			<groupId>org.eclipse.krazo.ext</groupId>
+			<artifactId>krazo-thymeleaf</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 

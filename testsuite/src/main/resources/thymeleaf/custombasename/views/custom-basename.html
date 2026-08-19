@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Basename Test</title>
+</head>
+<body>
+    <h1 id="custom-welcome" th:text="#{custom.welcome}">Welcome</h1>
+    <p id="custom-greeting" th:text="#{custom.greeting(${userName})}">Hello!</p>
+    <button id="custom-save" th:text="#{custom.button.save}">Save</button>
+
+    <hr/>
+    <p>
+        <strong>Current Locale:</strong> <span th:text="${#locale}">en</span>
+    </p>
+</body>
+</html>

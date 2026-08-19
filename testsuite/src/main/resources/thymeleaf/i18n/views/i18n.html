@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{page.title}">I18n Test</title>
+</head>
+<body>
+    <h1 th:text="#{welcome.message}">Welcome</h1>
+    <p th:text="#{user.greeting(${user.name})}">Hello, User!</p>
+
+    <div>
+        <button th:text="#{button.submit}">Submit</button>
+        <button th:text="#{button.cancel}">Cancel</button>
+    </div>
+
+    <hr/>
+    <p>
+        <strong>Current Locale:</strong> <span th:text="${#locale}">en</span>
+    </p>
+
+    <hr/>
+    <div>
+        <h3>StandardMessageResolver Test:</h3>
+        <p id="standard-resolver-test" th:text="#{standard.resolver.test}">Standard resolver message</p>
+        <p id="template-specific-message" th:text="#{template.specific.message}">Template specific message</p>
+    </div>
+
+    <hr/>
+    <div>
+        <h3>StandardMessageResolver Fallback Test:</h3>
+        <p id="fallback-test" th:text="#{nonexistent.message.key}">This key does not exist</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiple Message Resolvers Test</title>
+</head>
+<body>
+    <h1>Multiple Message Resolvers Test</h1>
+
+    <!-- Messages from CustomMessageResolver (order=0, highest priority) -->
+    <div>
+        <h2>CustomMessageResolver (order=0)</h2>
+        <p id="custom-greeting" th:text="#{custom.greeting}">Custom greeting</p>
+        <p id="custom-title" th:text="#{custom.title}">Custom title</p>
+    </div>
+
+    <!-- Messages from CustomMessageResolver2 (order=50) -->
+    <div>
+        <h2>CustomMessageResolver2 (order=50)</h2>
+        <p id="resolver2-message" th:text="#{resolver2.message}">Resolver2 message</p>
+        <p id="resolver2-greeting" th:text="#{resolver2.greeting(${user.name})}">Resolver2 greeting</p>
+    </div>
+
+    <!-- Messages from DefaultMessageResolver (order=Integer.MAX_VALUE-1) -->
+    <div>
+        <h2>DefaultMessageResolver (order=Integer.MAX_VALUE-1)</h2>
+        <p id="default-welcome" th:text="#{welcome.message}">Welcome message</p>
+    </div>
+
+    <hr/>
+    <div>
+        <h2>Message Resolution Order Test:</h2>
+        <p>The key "custom.greeting" exists in both CustomMessageResolver and CustomMessageResolver2.</p>
+        <p>Since CustomMessageResolver has higher priority (order=0 < order=50), it should be resolved by CustomMessageResolver.</p>
+        <p id="priority-test" th:text="#{custom.greeting}">Should be from CustomMessageResolver, not Resolver2</p>
+    </div>
+
+    <hr/>
+    <p>
+        <strong>Current Locale:</strong> <span th:text="${#locale}">en</span>
+    </p>
+</body>
+</html>

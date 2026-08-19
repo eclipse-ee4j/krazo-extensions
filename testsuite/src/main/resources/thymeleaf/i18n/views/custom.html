@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{custom.title}">Custom Test</title>
+</head>
+<body>
+    <h1 th:text="#{custom.greeting}">Custom Greeting</h1>
+    <p th:text="#{welcome.message}">Welcome message from properties</p>
+
+    <hr/>
+    <div>
+        <h2>Message Resolution Order:</h2>
+        <p>Multiple MessageResolvers are registered with TemplateEngine via CDI:</p>
+        <ol>
+            <li>CustomMessageResolver (order=0, set in producer) - In-memory messages</li>
+            <li>DefaultMessageResolver (order=Integer.MAX_VALUE-1) - messages.properties files</li>
+            <li>StandardMessageResolver (order=Integer.MAX_VALUE) - Thymeleaf default (auto-added)</li>
+        </ol>
+        <p>Each resolver is checked in order until a message is found. If no resolver finds a message, StandardMessageResolver returns the default representation like <code>??key_locale??</code>.</p>
+    </div>
+
+    <hr/>
+    <p>
+        <strong>Current Locale:</strong> <span th:text="${#locale}">en</span>
+    </p>
+</body>
+</html>
