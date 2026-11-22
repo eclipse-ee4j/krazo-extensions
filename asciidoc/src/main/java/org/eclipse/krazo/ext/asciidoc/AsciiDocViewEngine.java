@@ -38,6 +38,7 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class AsciiDocViewEngine.
@@ -71,11 +72,33 @@ public class AsciiDocViewEngine extends ViewEngineBase {
              BufferedReader reader = new BufferedReader(isr)) {
 
             Options options = new Options();
-            options.setAttributes(new HashMap<>(context.getModels().asMap()));
+            Map<String, Object> attributes = new HashMap<>();
+            context.getModels().asMap().forEach((name, value) -> attributes.put(name, encode(value)));
+            options.setAttributes(attributes);
 
             asciidoctor.convert(reader, writer, options);
         } catch (IOException e) {
             throw new ViewEngineException(e);
         }
+    }
+
+    /**
+     * Encodes every character of a model value other than letters, digits and spaces as a numeric
+     * character reference, so that the value is rendered as literal text exactly as provided rather
+     * than being processed as AsciiDoc or HTML markup.
+     */
+    private static Object encode(Object value) {
+        if (value == null || value instanceof Boolean || value instanceof Number) {
+            return value;
+        }
+        StringBuilder sb = new StringBuilder();
+        value.toString().codePoints().forEach(cp -> {
+            if (Character.isLetterOrDigit(cp) || cp == ' ') {
+                sb.appendCodePoint(cp);
+            } else {
+                sb.append("&#").append(cp).append(';');
+            }
+        });
+        return sb.toString();
     }
 }
