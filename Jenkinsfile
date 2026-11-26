@@ -26,8 +26,8 @@ pipeline {
     stage("Integration-Test") {
         steps {
             withMaven() {
-              sh "wget https://download.eclipse.org/ee4j/glassfish/glassfish-8.0.3.zip"
-              sh "unzip glassfish-8.0.3.zip"
+              sh "wget https://download.eclipse.org/ee4j/glassfish/glassfish-8.0.5.zip"
+              sh "unzip glassfish-8.0.5.zip"
               sh "glassfish8/bin/asadmin start-domain"
 
               sh "mvn -Pstaging,testsuite-glassfish verify"
