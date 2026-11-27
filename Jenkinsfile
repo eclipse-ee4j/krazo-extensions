@@ -3,7 +3,7 @@ pipeline {
 
   tools {
     maven "apache-maven-latest"
-    jdk "temurin-latest"
+    jdk "temurin-jdk21-latest"
   }
 
   stages {
@@ -26,13 +26,13 @@ pipeline {
     stage("Integration-Test") {
         steps {
             withMaven() {
-              sh "wget https://download.eclipse.org/ee4j/glassfish/glassfish-8.0.5.zip"
-              sh "unzip glassfish-8.0.5.zip"
-              sh "glassfish8/bin/asadmin start-domain"
+              sh "wget https://download.eclipse.org/ee4j/glassfish/glassfish-7.1.1.zip"
+              sh "unzip glassfish-7.1.1.zip"
+              sh "glassfish7/bin/asadmin start-domain"
 
               sh "mvn -Pstaging,testsuite-glassfish verify"
 
-              sh "glassfish8/bin/asadmin stop-domain"
+              sh "glassfish7/bin/asadmin stop-domain"
             }
         }
     }

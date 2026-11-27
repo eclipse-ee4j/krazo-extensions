@@ -32,8 +32,10 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.file.Paths;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(Arquillian.class)
@@ -74,5 +76,16 @@ public class AsciiDocIT {
         final HtmlPage page = webClient.getPage(baseURL + "resources/hello?user=mvc");
         final String h2 = page.getElementsByTagName("h2").get(0).getTextContent();
         assertTrue(h2.contains("mvc"));
+    }
+
+    @Test
+    public void testModelValueIsRenderedLiterally() throws Exception {
+        final String user = "<b>Duke</b> & *Friends* link:https://example.com[home]";
+        final HtmlPage page = webClient.getPage(baseURL + "resources/hello?user="
+            + URLEncoder.encode(user, "UTF-8"));
+        assertTrue(page.getElementsByTagName("h2").get(0).getElementsByTagName("b").isEmpty());
+        assertTrue(page.getElementsByTagName("h2").get(0).getElementsByTagName("strong").isEmpty());
+        assertTrue(page.getElementsByTagName("h2").get(0).getElementsByTagName("a").isEmpty());
+        assertEquals("Hello " + user, page.getElementsByTagName("h2").get(0).getTextContent());
     }
 }
