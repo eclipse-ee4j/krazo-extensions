@@ -32,4 +32,10 @@ public interface ThymeleafProperties extends Properties {
      * {@link DefaultMessageResolver}.
      */
     String MESSAGES_BASENAME = "org.eclipse.krazo.thymeleaf.messages.basename";
+
+    /**
+     * Boolean property that enables or disables template caching.
+     * Default value is {@code true}.
+     */
+    String CACHE = "org.eclipse.krazo.thymeleaf.cache";
 }

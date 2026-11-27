@@ -3,6 +3,7 @@
 
     Copyright (c) 2014-2015 Oracle and/or its affiliates. All rights reserved.
     Copyright (c) 2018, 2022 Eclipse Krazo committers and contributors
+	Copyright (c) 2026 Contributors to the Eclipse Foundation
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -31,7 +32,7 @@
 
 	<groupId>org.eclipse.krazo.ext</groupId>
 	<artifactId>krazo-ext-parent</artifactId>
-	<version>3.1.0-SNAPSHOT</version>
+	<version>4.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Eclipse Krazo Extensions Parent</name>
 
@@ -51,12 +52,12 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.release>11</maven.compiler.release>
+		<maven.compiler.release>17</maven.compiler.release>
 
 		<!-- MVC / Krazo dependencies -->
-		<jakartaee.version>10.0.0</jakartaee.version>
-		<mvc.version>2.1.0</mvc.version>
-		<krazo.version>3.0.1</krazo.version>
+		<jakartaee.version>11.0.0</jakartaee.version>
+		<mvc.version>3.0.1</mvc.version>
+		<krazo.version>4.0.2</krazo.version>
 
 		<!-- Extension dependencies -->
 		<asciidoctorj.version>2.5.2</asciidoctorj.version>
@@ -66,7 +67,7 @@
 		<compiler.version>0.9.10</compiler.version>
 		<pebble.version>3.1.5</pebble.version>
 		<ST4.version>4.3.1</ST4.version>
-		<thymeleaf.version>3.1.0.M1</thymeleaf.version>
+		<thymeleaf.version>3.1.7.RELEASE</thymeleaf.version>
 		<velocity-engine-core.version>2.3</velocity-engine-core.version>
 
 		<!-- Test dependencies -->

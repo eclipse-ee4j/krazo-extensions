@@ -26,6 +26,7 @@ import jakarta.inject.Inject;
 import jakarta.mvc.MvcContext;
 import jakarta.mvc.engine.ViewEngine;
 import org.eclipse.krazo.engine.ViewEngineConfig;
+import org.eclipse.krazo.util.PropertyUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.messageresolver.IMessageResolver;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -48,16 +49,19 @@ public class DefaultTemplateEngineProducer {
 	private static final int VIEW_RESOLVER_ORDER = 1;
 	private static final int FRAGMENT_RESOLVER_ORDER = 2;
 
-	@Inject
-	private JakartaServletWebApplicationWrapper applicationWrapper;
+	private final JakartaServletWebApplicationWrapper applicationWrapper;
+	private final MvcContext mvcContext;
+	private final Instance<IMessageResolver> messageResolvers;
 
 	@Inject
-	private MvcContext mvcContext;
-
-	@Inject
-	@Any
-	@ViewEngineConfig
-	private Instance<IMessageResolver> messageResolvers;
+	public DefaultTemplateEngineProducer(
+		JakartaServletWebApplicationWrapper applicationWrapper,
+		MvcContext mvcContext,
+		@Any @ViewEngineConfig Instance<IMessageResolver> messageResolvers) {
+		this.applicationWrapper = applicationWrapper;
+		this.mvcContext = mvcContext;
+		this.messageResolvers = messageResolvers;
+	}
 
 	@Produces
 	@ViewEngineConfig
@@ -93,6 +97,7 @@ public class DefaultTemplateEngineProducer {
 		final WebApplicationTemplateResolver viewResolver = new WebApplicationTemplateResolver(servletApplication);
 		viewResolver.setOrder(VIEW_RESOLVER_ORDER);
 		viewResolver.setCheckExistence(true);
+		viewResolver.setCacheable(usingCache());
 		return viewResolver;
 	}
 
@@ -114,8 +119,19 @@ public class DefaultTemplateEngineProducer {
 		fragmentResolver.setTemplateMode(TemplateMode.HTML);
 		fragmentResolver.setCharacterEncoding(StandardCharsets.UTF_8.name());
 		fragmentResolver.setOrder(FRAGMENT_RESOLVER_ORDER);
+		fragmentResolver.setCacheable(usingCache());
 
 		return fragmentResolver;
+	}
+
+	/**
+	 * Checks application configuration to see if template caching should be used.
+	 * Defaults to {@code true} if not explicitly configured.
+	 *
+	 * @return {@code true} if caching should be enabled, {@code false} otherwise
+	 */
+	boolean usingCache() {
+		return PropertyUtils.getProperty(mvcContext.getConfig(), ThymeleafProperties.CACHE, true);
 	}
 
 }
