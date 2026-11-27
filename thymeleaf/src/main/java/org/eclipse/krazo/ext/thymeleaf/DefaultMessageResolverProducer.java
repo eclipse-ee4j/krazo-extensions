@@ -21,9 +21,8 @@ import jakarta.enterprise.inject.Produces;
 import jakarta.inject.Inject;
 import jakarta.mvc.MvcContext;
 import org.eclipse.krazo.engine.ViewEngineConfig;
+import org.eclipse.krazo.util.PropertyUtils;
 import org.thymeleaf.messageresolver.IMessageResolver;
-
-import java.util.Optional;
 
 /**
  * Producer for the default MessageResolver used by ThymeleafViewEngine.
@@ -47,10 +46,8 @@ public class DefaultMessageResolverProducer {
     @Produces
     @ViewEngineConfig
     public IMessageResolver createMessageResolver() {
-        final String basename = Optional.ofNullable(mvcContext.getConfig().getProperty(ThymeleafProperties.MESSAGES_BASENAME))
-            .map(String::valueOf)
-            .orElse(DefaultMessageResolver.DEFAULT_BASENAME);
-
+        final String basename = PropertyUtils.getProperty(mvcContext.getConfig(), 
+            ThymeleafProperties.MESSAGES_BASENAME, DefaultMessageResolver.DEFAULT_BASENAME);
         return new DefaultMessageResolver(basename);
     }
 }
