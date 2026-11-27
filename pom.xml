@@ -51,12 +51,12 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<maven.compiler.release>11</maven.compiler.release>
+		<maven.compiler.release>17</maven.compiler.release>
 
 		<!-- MVC / Krazo dependencies -->
-		<jakartaee.version>10.0.0</jakartaee.version>
-		<mvc.version>2.1.0</mvc.version>
-		<krazo.version>3.0.1</krazo.version>
+		<jakartaee.version>11.0.0</jakartaee.version>
+		<mvc.version>3.0.1</mvc.version>
+		<krazo.version>4.0.2</krazo.version>
 
 		<!-- Extension dependencies -->
 		<asciidoctorj.version>2.5.2</asciidoctorj.version>
