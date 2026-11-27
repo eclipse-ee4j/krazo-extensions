@@ -30,14 +30,13 @@ import java.util.ResourceBundle;
  * Java {@link ResourceBundle} mechanism. This allows Thymeleaf templates to use
  * internationalized messages via the #{...} syntax.
  *
- * <p>Message files should be placed in the classpath with the naming pattern:
+ * <p>Message files should be placed in the classpath with the naming pattern:</p>
  * <ul>
  *   <li>messages.properties (default)</li>
  *   <li>messages_ja.properties (Japanese)</li>
  *   <li>messages_en.properties (English)</li>
  *   <li>etc.</li>
  * </ul>
- * </p>
  *
  * <p>This resolver is configured to run just before Thymeleaf's StandardMessageResolver,
  * allowing it to provide messages from resource bundles before falling back to the

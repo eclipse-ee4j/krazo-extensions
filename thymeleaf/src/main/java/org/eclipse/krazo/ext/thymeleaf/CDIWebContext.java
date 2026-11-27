@@ -34,14 +34,12 @@ import java.util.stream.Collectors;
  * Thymeleaf context for resolving variables from the model or cdi context. In addition to the functions provided by
  * {@link org.thymeleaf.context.WebContext} this allows to resolve beans annotated with {@linkplain jakarta.inject.Named}
  * from the cdi context.
- * <p>
- * Beans will be resolved in this order:
+ * <p>Beans will be resolved in this order:</p>
  * <ol>
  * <li>special variables (like "request")</li>
  * <li>variables from the model</li>
  * <li>named beans from the cdi context</li>
  * </ol>
- * </p>
  *
  * @author Gregor Tudan
  */
