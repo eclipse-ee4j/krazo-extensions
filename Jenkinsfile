@@ -3,7 +3,7 @@ pipeline {
 
   tools {
     maven "apache-maven-latest"
-    jdk "temurin-latest"
+    jdk "temurin-jdk21-latest"
   }
 
   stages {
