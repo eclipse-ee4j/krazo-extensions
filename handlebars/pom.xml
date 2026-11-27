@@ -30,7 +30,6 @@
     <artifactId>krazo-handlebars</artifactId>
     <packaging>jar</packaging>
     <name>Eclipse Krazo Handlebars Extension</name>
-	<version>1.1.2-SNAPSHOT</version>
 
 	<properties>
 		<jakartaee.version>8.0.0</jakartaee.version>
