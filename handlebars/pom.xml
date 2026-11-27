@@ -35,6 +35,8 @@
 		<jakartaee.version>8.0.0</jakartaee.version>
 		<mvc.version>1.1.0</mvc.version>
 		<krazo.version>1.1.1</krazo.version>
+		<!-- Not released: still based on the javax.* namespace (MVC 1.1 / Krazo 1.1) -->
+		<maven.deploy.skip>true</maven.deploy.skip>
 	</properties>
 
     <dependencies>
